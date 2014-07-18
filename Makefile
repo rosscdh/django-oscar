@@ -82,7 +82,8 @@ testmigrations:
 # (instead of upgrade) because we install Django in the .travis.yml
 # and upgrade would overwrite it.  We also build the sandbox as part of this target
 # to catch any errors that might come from that build process.
-travis: install lint coverage sandbox demo testmigrations
+travis: install lint coverage sandbox testmigrations
+	if [ -z "$(SKIP_DEMO_SITE)" ]; then make demo; fi
 
 messages:
 	# Create the .po files used for i18n
